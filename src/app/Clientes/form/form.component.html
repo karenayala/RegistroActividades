@@ -1,0 +1,64 @@
+<div>
+    <div *ngFor="let error of errores">
+        <div class="alert alert-danger p-1">{{error}}</div>
+    </div>
+</div>
+<div class="card bg-dark text-white my-2">
+    <div class="card-header" >Actividades</div>
+    <div class="card-body">
+        <form >
+
+            <div class="form-group row">
+                <label  class="col-form-label col-sm-2">Titulo Actividad</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="cliente.titulo_actividad" name="titulo actividad" > <!--required minlength maxlength-->
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label  class="col-form-label col-sm-2">Descripcion</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="cliente.descripcion" name="descripcion" > <!--required minlength maxlength-->
+                </div>
+            </div>
+            <div class="form-group row">
+                <label  class="col-form-label col-sm-2">Estado</label>
+               
+                <div class="col-sm-6">
+                    <select class="custom-select" [(ngModel)]="cliente.estado" name="estado">
+                       <option >PENDIENTE</option>
+                       <option >FINALIZADO</option>
+                    </select>
+                  </div>
+            </div>
+
+
+          <div class="form-group row">
+            <label  class="col-form-label col-sm-2">Empleado</label>
+            <div class="col-sm-6">
+              <select class="custom-select" [(ngModel)]="cliente.empleado" name="empleado">
+                 <option [value]="empl.id" *ngFor="let empl of empleados">{{empl.nombre}} {{empl.apellido}}</option>
+              </select>
+            </div>
+          </div>
+
+        
+
+            <div class="form-group row">
+                <label  class="col-form-label col-sm-2">Fecha Ejecucion</label>
+                <div class="col-sm-6">
+                    <input [matDatepicker]="miDatepicker" class="form-control"
+                           autocomplete [(ngModel)]="cliente.fecha_ejecucion" name="fecha" style="display: inline; width: 150px;">
+                    <mat-datepicker-toggle [for]="miDatepicker" style="color: yellow"></mat-datepicker-toggle>
+                    <mat-datepicker #miDatepicker></mat-datepicker>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-primary" role="button" (click)="create()" >Registrar</button> <!--[disabled]="!clienteForm.form.valid"-->
+                    <button class="btn btn-danger mx-2" role="button" [routerLink]="['/users']" routerLinkActive="router-link-active" >Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

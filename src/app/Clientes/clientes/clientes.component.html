@@ -1,0 +1,45 @@
+<div class="card-header text-uppercase">Actividades</div>
+<div class="card-body">
+  <div class="my-2 text-left">
+    <button type="button" class="btn btn-primary text-bold" [routerLink]="['/users/form']"
+            routerLinkActive="router-link-active">Registrar Actividades o tareas
+    </button>
+  </div>
+  <div class="alert alert-info" *ngIf="clientes?.length == 0">
+    No hay actividades o tareas  registrados!
+  </div>
+  <table class="table table-bordered table-dark" *ngIf="clientes?.length>0">
+    <thead>
+    <tr class="text-center">
+      <th>Titulo Actividad</th>
+      <th>descripcion</th>
+      <th>estado</th>
+      <th>empleado asignado</th>
+      <th>dias retraso</th>
+       <th>Fecha ejecucion</th>
+      <th>Modificar</th>
+      <th>Eliminar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cliente of clientes" class="text-center">
+      <th>{{cliente.titulo_actividad}}</th>
+      <td>{{cliente.descripcion}}</td>
+      <td>{{cliente.estado}}</td>
+      <td>{{cliente.empleado}}</td>
+      <td>{{cliente.dias_retraso}}</td>
+      <td>{{cliente.fecha_ejecucion}}</td>
+       <td>
+        <button type="button" name="buttonEditar" class="btn btn-primary"
+                [routerLink]="['/users/form', cliente.id]" title="Modificar">Modificar
+        </button>
+      </td>
+      <td>
+        <button type="button" name="buttonEliminar" class="btn btn-danger  ml-2" (click)="delete(cliente)"
+                title="Eliminar">Eliminar
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
